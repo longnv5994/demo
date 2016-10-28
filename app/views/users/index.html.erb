@@ -1,0 +1,25 @@
+<div class="row col-lg-12">
+  <div class="col-lg-9">
+    <%= bootstrap_flash %>
+    <div style='width: 800px;'>
+      <div id="map" style='width: 800px; height: 550px;'></div>
+    </div>
+  </div>
+  <div class="col-lg-3">
+    <div class="well sidebar-nav">
+      <h3>List users</h3>
+      <h4><%= link_to "Chat Rooms", chat_rooms_path %></h4>
+      <ul class="nav nav-list">
+        <li class="nav-header"></li>
+        <% @users.each do |user| %>
+          <% if User.online(120).include?(user) %>
+            <li><a href="chat_rooms" ><%= user.email %> online!</a></li>
+          <% else %>
+            <li><%= link_to user.email, chat_rooms_path %></li>
+          <% end %>
+
+        <% end %>
+      </ul>
+    </div><!--/.well -->
+  </div><!--/span-->
+</div><!--/row-->
